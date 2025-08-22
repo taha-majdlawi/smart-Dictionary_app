@@ -38,7 +38,7 @@ class _RootScreenState extends State<RootScreen> {
       body: PageView(
         controller: pageController,
         children: screens,
-        physics: NeverScrollableScrollPhysics(),
+     //  physics: NeverScrollableScrollPhysics(),
       ),
 
       bottomNavigationBar: NavigationBar(

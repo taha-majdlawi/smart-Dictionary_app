@@ -5,8 +5,6 @@ import 'package:smart_dictionary_app/widgets/chat_buble.dart';
 import 'package:smart_dictionary_app/widgets/show_msegs_widget.dart';
 import 'package:smart_dictionary_app/widgets/title_text.dart';
 
-
-
 class ChatScreen extends StatelessWidget {
   @override
   String textFeildString = '';
@@ -15,6 +13,7 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.darkScaffoldColor,
         title: Text('AI Chat', style: AppTextStyles.textStyle1),
         centerTitle: true,
       ),

@@ -12,13 +12,17 @@ class ChatBuble extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: const Color.fromARGB(255, 87, 92, 95),
+            width: .5,
+          ),
+          borderRadius: const BorderRadius.only(
             topRight: Radius.circular(32),
             topLeft: Radius.circular(32),
             bottomLeft: Radius.circular(32),
           ),
-          color: AppColors.darkPrimary,
+          color: const Color(0xFF1E1E1E),
         ),
         child: Text(
           '  message.message $a',
@@ -45,11 +49,11 @@ class ChatBubleForFriend extends StatelessWidget {
             topLeft: Radius.circular(32),
             bottomRight: Radius.circular(32),
           ),
-          color: Color.fromARGB(255, 193, 211, 224),
+          color: const Color.fromARGB(255, 54, 52, 52),
         ),
         child: Text(
           ' message.message $a',
-          style: const TextStyle(color: Colors.black),
+          style: const TextStyle(color: Colors.white),
         ),
       ),
     );
