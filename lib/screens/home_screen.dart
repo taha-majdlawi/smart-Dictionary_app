@@ -3,6 +3,7 @@ import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_dictionary_app/core/constants/app_colors.dart';
 import 'package:smart_dictionary_app/providers/theme_provider.dart';
+import 'package:smart_dictionary_app/widgets/home_screen_search_textFieldWidget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,9 +12,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      backgroundColor: themeProvider.getIsDarkTheme
-          ? AppColors.darkScaffoldColor
-          : AppColors.lightCardColor,
       appBar: AppBar(
         backgroundColor: themeProvider.getIsDarkTheme
             ? AppColors.darkScaffoldColor
@@ -25,6 +23,12 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Icon(IconlyLight.setting, size: 28),
           ),
+        ],
+      ),
+      body: Column(
+        children: [
+          SizedBox(height: 12),
+          HomeScreenSearchTextFieldWidget(),
         ],
       ),
     );
