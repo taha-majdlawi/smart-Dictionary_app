@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:smart_dictionary_app/core/constants/app_colors.dart';
 import 'package:smart_dictionary_app/core/constants/app_text_styles.dart';
 import 'package:smart_dictionary_app/providers/theme_provider.dart';
+import 'package:smart_dictionary_app/widgets/favorites_words_widget.dart';
 import 'package:smart_dictionary_app/widgets/home_screen_search_textFieldWidget.dart';
 import 'package:smart_dictionary_app/widgets/recent_search_words_widget.dart';
 
@@ -38,6 +39,10 @@ class HomeScreen extends StatelessWidget {
             Text('Recent Searches', style: AppTextStyles.textStyle2),
             SizedBox(height: 28),
             RecentSearchesWordsWidget(),
+            SizedBox(height: 28),
+            Text('Favorites', style: AppTextStyles.textStyle2),
+            SizedBox(height: 28),
+            FavoritesWordsWidget(),
           ],
         ),
       ),
