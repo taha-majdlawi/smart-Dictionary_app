@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:smart_dictionary_app/screens/History.dart';
+import 'package:smart_dictionary_app/screens/chat_screen.dart';
+import 'package:smart_dictionary_app/screens/fav_screen.dart';
 
 import 'package:smart_dictionary_app/screens/home_screen.dart';
+import 'package:smart_dictionary_app/screens/profile.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});
@@ -15,9 +19,10 @@ class _RootScreenState extends State<RootScreen> {
   int currentScreen = 0;
   List<Widget> screens = [
     const HomeScreen(),
-    //SearchScreen(),
-   // CartScreen(),
-   // ProfileScreen(),
+    ChatScreen(),
+    FavScreen(),
+    HistoryScreen(),
+    ProfileScreen(),
   ];
 
   @override
