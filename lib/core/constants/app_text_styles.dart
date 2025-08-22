@@ -10,7 +10,7 @@ class AppTextStyles {
   static TextStyle textStyle2 = TextStyle(
     fontFamily: 'Roboto',
     fontWeight: FontWeight.bold,
-    fontSize: 32,
+    fontSize: 28,
     overflow: TextOverflow.ellipsis,
   );
 }

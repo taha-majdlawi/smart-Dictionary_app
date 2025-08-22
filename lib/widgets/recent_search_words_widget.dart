@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 class RecentSearchesWordsWidget extends StatelessWidget {
   const RecentSearchesWordsWidget({super.key});
 
+
+
+  
   final List<String> recentSearches = const [
     'Flutter',
     'Dart',

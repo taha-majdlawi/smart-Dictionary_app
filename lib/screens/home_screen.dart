@@ -7,6 +7,7 @@ import 'package:smart_dictionary_app/providers/theme_provider.dart';
 import 'package:smart_dictionary_app/widgets/favorites_words_widget.dart';
 import 'package:smart_dictionary_app/widgets/home_screen_search_textFieldWidget.dart';
 import 'package:smart_dictionary_app/widgets/recent_search_words_widget.dart';
+import 'package:smart_dictionary_app/widgets/word_of_the_day_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -43,6 +44,11 @@ class HomeScreen extends StatelessWidget {
             Text('Favorites', style: AppTextStyles.textStyle2),
             SizedBox(height: 28),
             FavoritesWordsWidget(),
+            SizedBox(height: 32),
+            Text('Word Of The Day', style: AppTextStyles.textStyle2),
+            SizedBox(height: 25),
+
+            WordOfTheDayWidget(),
           ],
         ),
       ),
