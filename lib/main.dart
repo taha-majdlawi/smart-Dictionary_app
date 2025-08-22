@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:qurany_app/const/theme_data.dart';
 
-import 'package:qurany_app/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
-import '../root_screen.dart';
+import 'package:smart_dictionary_app/core/constants/theme_data.dart';
+import 'package:smart_dictionary_app/providers/theme_provider.dart';
+import 'package:smart_dictionary_app/screens/home_screen.dart';
+
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
                  isDarkTheme: themeProvider.getIsDarkTheme,
                  context: context,
             ),
-            home: RootScreen(),
+            home: HomeScreen(),
           );
         },
       ),
