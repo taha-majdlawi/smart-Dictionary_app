@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_dictionary_app/core/constants/theme_data.dart';
 import 'package:smart_dictionary_app/providers/theme_provider.dart';
+import 'package:smart_dictionary_app/root_screend.dart';
 import 'package:smart_dictionary_app/screens/home_screen.dart';
 
-
-void main()async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(const MyApp());
@@ -23,12 +23,13 @@ class MyApp extends StatelessWidget {
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: Styles.themeData(
-                 isDarkTheme: themeProvider.getIsDarkTheme,
-                 context: context,
+              isDarkTheme: themeProvider.getIsDarkTheme,
+              context: context,
             ),
-            home: HomeScreen(),
+            home: RootScreen(),
           );
         },
       ),

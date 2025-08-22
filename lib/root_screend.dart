@@ -58,14 +58,19 @@ class _RootScreenState extends State<RootScreen> {
             label: 'Home',
           ),
           NavigationDestination(
-            selectedIcon: Icon(IconlyBold.search),
-            icon: Icon(IconlyLight.search),
-            label: 'Search',
+            selectedIcon: Icon(IconlyBold.chat),
+            icon: Icon(IconlyLight.chat),
+            label: 'Chat',
           ),
           NavigationDestination(
-            selectedIcon: Icon(IconlyBold.bag_2),
-            icon: Icon(IconlyLight.bag_2),
-            label: 'Cart',
+            selectedIcon: Icon(IconlyBold.bookmark),
+            icon: Icon(IconlyLight.bookmark),
+            label: 'Favorites',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(IconlyBold.time_circle),
+            icon: Icon(IconlyLight.time_circle),
+            label: 'History',
           ),
           NavigationDestination(
             selectedIcon: Icon(IconlyBold.profile),
