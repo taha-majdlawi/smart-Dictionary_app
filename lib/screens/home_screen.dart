@@ -8,16 +8,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
-    return Scaffold(
-      body: Center(
-        child: SwitchListTile(
-          value: themeProvider.getIsDarkTheme,
-          onChanged: (value) {
-            themeProvider.setDarkTheme(themeValue: value);
-          },
-          title: Text(themeProvider.getIsDarkTheme ? 'Light' : 'Dark'),
-        ),
-      ),
-    );
+    return Scaffold();
   }
 }

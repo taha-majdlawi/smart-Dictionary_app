@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:smart_dictionary_app/providers/theme_provider.dart';
 import 'package:smart_dictionary_app/widgets/title_text.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      body: Center(child: TitlesTextWidget(label: 'Profile Screen')),
+      body: Center(
+        child: SwitchListTile(
+          value: themeProvider.getIsDarkTheme,
+          onChanged: (value) {
+            themeProvider.setDarkTheme(themeValue: value);
+          },
+          title: Text(themeProvider.getIsDarkTheme ? 'Light' : 'Dark'),
+        ),
+      ),
     );
   }
 }
