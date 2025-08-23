@@ -5,6 +5,7 @@ import 'package:smart_dictionary_app/core/constants/theme_data.dart';
 import 'package:smart_dictionary_app/providers/theme_provider.dart';
 import 'package:smart_dictionary_app/root_screend.dart';
 import 'package:smart_dictionary_app/screens/home_screen.dart';
+import 'package:smart_dictionary_app/screens/word_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
               isDarkTheme: themeProvider.getIsDarkTheme,
               context: context,
             ),
-            home: RootScreen(),
+            home: WordScreen(),
           );
         },
       ),

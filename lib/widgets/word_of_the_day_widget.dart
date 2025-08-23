@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_dictionary_app/core/constants/app_text_styles.dart';
 
 class WordOfTheDayWidget extends StatelessWidget {
   const WordOfTheDayWidget({super.key});
@@ -37,12 +38,7 @@ class WordOfTheDayWidget extends StatelessWidget {
         Text(
           maxLines: 2,
           'A UI toolkit for building natively compiled applications.',
-          style: TextStyle(
-            fontWeight: FontWeight.w300,
-            fontSize: 18,
-
-            overflow: TextOverflow.ellipsis,
-          ),
+          style: AppTextStyles.textStyle3,
         ),
       ],
     );

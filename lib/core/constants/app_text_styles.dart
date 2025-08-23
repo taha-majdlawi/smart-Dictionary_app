@@ -13,4 +13,15 @@ class AppTextStyles {
     fontSize: 28,
     overflow: TextOverflow.ellipsis,
   );
+  static TextStyle textStyle3 = TextStyle(
+    fontWeight: FontWeight.w300,
+    fontSize: 18,
+    fontFamily: 'Roboto',
+    overflow: TextOverflow.ellipsis,
+  );
+  static TextStyle textStyle4 = TextStyle(
+    fontSize: 18,
+    fontFamily: 'Roboto',
+    overflow: TextOverflow.ellipsis,
+  );
 }
