@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_dictionary_app/core/constants/app_text_styles.dart';
 import 'package:smart_dictionary_app/widgets/antonyms_words_widget.dart';
+import 'package:smart_dictionary_app/widgets/example_sentence.dart';
 import 'package:smart_dictionary_app/widgets/recent_search_words_widget.dart';
 import 'package:smart_dictionary_app/widgets/synonyms_words_widget.dart';
 import 'package:smart_dictionary_app/widgets/word_defintion_widget.dart';
@@ -33,6 +34,11 @@ class WordScreen extends StatelessWidget {
               Text('Antonyms', style: AppTextStyles.textStyle2),
               SizedBox(height: 28),
               AntonymsWordsWidget(),
+
+              SizedBox(height: 28),
+              Text('Example Sentence', style: AppTextStyles.textStyle2),
+              SizedBox(height: 18),
+              ExampleSentenceWidget(),
             ],
           ),
         ),
