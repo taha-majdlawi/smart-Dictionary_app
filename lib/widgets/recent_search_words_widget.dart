@@ -20,7 +20,16 @@ class RecentSearchesWordsWidget extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: recentSearches.length,
         itemBuilder: (context, index) {
-          return CustomWordBoxWidget(word: recentSearches[index]);
+          return CustomWordBoxWidget(
+            word: recentSearches[index],
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => WordScreen(word: recentSearches[index]),
+                ),
+              );
+            },
+          );
         },
       ),
     );

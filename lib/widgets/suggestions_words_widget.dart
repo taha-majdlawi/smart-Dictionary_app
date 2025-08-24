@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:smart_dictionary_app/screens/word_screen.dart';
+import 'package:smart_dictionary_app/widgets/custom_word_box_widget.dart';
 
 class SuggestionsWordsWidget extends StatelessWidget {
   const SuggestionsWordsWidget({super.key});
 
-
-
-  
-  final List<String> recentSearches = const [
+  final List<String> suggestions = const [
     'Dictionary',
     'Translation',
     'Synonyms',
@@ -19,32 +18,17 @@ class SuggestionsWordsWidget extends StatelessWidget {
       height: 50, // fixed height for horizontal scroll
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: recentSearches.length,
+        itemCount: suggestions.length,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(right: 12.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFF1E1E1E),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 18.0,
-                  vertical: 12,
+          return CustomWordBoxWidget(
+            word: suggestions[index],
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => WordScreen(word: suggestions[index]),
                 ),
-                child: Center(
-                  child: Text(
-                    recentSearches[index],
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontFamily: 'Roboto',
-                    ),
-                  ),
-                ),
-              ),
-            ),
+              );
+            },
           );
         },
       ),

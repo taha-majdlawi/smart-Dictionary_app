@@ -4,19 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:smart_dictionary_app/screens/word_screen.dart';
 
 class CustomWordBoxWidget extends StatelessWidget {
-  const CustomWordBoxWidget({super.key, required this.word});
+  const CustomWordBoxWidget({
+    super.key,
+    required this.word,
+    required this.onTap,
+  });
 
   final String word;
-
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => WordScreen()),
-        );
-      },
+      onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.only(right: 12.0),
         child: Container(
