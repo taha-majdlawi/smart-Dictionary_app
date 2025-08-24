@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
               isDarkTheme: themeProvider.getIsDarkTheme,
               context: context,
             ),
-            home: WordScreen(),
+            home: RootScreen(),
           );
         },
       ),
