@@ -24,7 +24,12 @@ class WordScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              WordDefinintionWidget(),
+              WordDefinintionWidget(
+                word: word,
+                partOfSpeech: 'noun',
+                definition:
+                    'A UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.',
+              ),
               SizedBox(height: 28),
 
               Text('Synonyms', style: AppTextStyles.textStyle2),
