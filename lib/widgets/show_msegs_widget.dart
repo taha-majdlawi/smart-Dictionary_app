@@ -5,7 +5,7 @@ bool msg = false;
 class ShowMsgsWidgets extends StatelessWidget {
   const ShowMsgsWidgets({
     super.key,
-    required this.scrollController,
+    required this.scrollController, required List<Map<String, dynamic>> messages,
   });
 
   final ScrollController scrollController;

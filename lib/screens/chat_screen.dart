@@ -19,7 +19,7 @@ class ChatScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          ShowMsgsWidgets(scrollController: scrollController),
+          ShowMsgsWidgets(scrollController: scrollController, messages: [],),
           Padding(
             padding: const EdgeInsets.all(12),
             child: TextField(
