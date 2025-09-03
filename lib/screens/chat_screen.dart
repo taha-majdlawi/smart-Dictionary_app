@@ -1,85 +1,131 @@
 import 'package:flutter/material.dart';
-import 'package:smart_dictionary_app/core/constants/app_colors.dart';
-import 'package:smart_dictionary_app/core/constants/app_text_styles.dart';
-import 'package:smart_dictionary_app/widgets/chat_buble.dart';
-import 'package:smart_dictionary_app/widgets/show_msegs_widget.dart';
-import 'package:smart_dictionary_app/widgets/title_text.dart';
+import 'package:smart_dictionary_app/core/services/chat_service.dart';
 
-class ChatScreen extends StatelessWidget {
+class ChatMessage {
+  final String text;
+  final bool isUser;
+  ChatMessage({required this.text, required this.isUser});
+}
+
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
+
   @override
-  String textFeildString = '';
-  ScrollController scrollController = ScrollController();
-  TextEditingController controller = TextEditingController();
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  final List<ChatMessage> _messages = [];
+  final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+  bool _isSending = false;
+
+  final ChatService _chatService = ChatService(
+    serverUrl: "http://10.0.2.2:5000/chat",
+  );
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.darkScaffoldColor,
-        title: Text('AI Chat', style: AppTextStyles.textStyle1),
-        centerTitle: true,
+        title: const Text("شات القاموس الذكي"),
+        backgroundColor: Colors.blueGrey[900],
       ),
       body: Column(
         children: [
-          ShowMsgsWidgets(scrollController: scrollController, messages: [],),
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: TextField(
-              onChanged: (data) {
-                textFeildString = data;
-              },
-              controller: controller,
-              onSubmitted: (data) {
-                // // to add msg to databasse
-                // messages.add({
-                //   kMessage: data,
-                //   kCreatedAt: DateTime.now(),
-                //   'id': currentUserEmail,
-                // });
-                controller.clear();
-                _scrollToEnd();
-              },
-              style: const TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                hintText: 'Send Message',
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    // to add msg to databasse
-                    // messages.add({
-                    //   kMessage: textFeildString,
-                    //   kCreatedAt: DateTime.now(),
-                    //   'id': currentUserEmail,
-                    // });
-
-                    controller.clear();
-                    _scrollToEnd();
-                  },
-                  icon: const Icon(Icons.send),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(
-                    color: AppColors.darkScaffoldColor,
+          Expanded(
+            child: ListView.builder(
+              controller: _scrollController,
+              padding: const EdgeInsets.all(8),
+              itemCount: _messages.length,
+              itemBuilder: (context, index) {
+                final msg = _messages[index];
+                return Align(
+                  alignment: msg.isUser
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 4),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: msg.isUser ? Colors.blue : Colors.grey[800],
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      msg.text,
+                      textAlign: TextAlign.right,
+                      style: const TextStyle(fontSize: 16, color: Colors.white),
+                    ),
                   ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(
-                    color: AppColors.darkScaffoldColor,
-                  ),
-                ),
-              ),
+                );
+              },
             ),
           ),
+          const Divider(height: 1),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _controller,
+                    textDirection: TextDirection.rtl,
+                    decoration: const InputDecoration(
+                      hintText: "اكتب رسالتك هنا...",
+                      border: OutlineInputBorder(),
+                    ),
+                    onSubmitted: (_) => _sendMessage(),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                IconButton(
+                  icon: _isSending
+                      ? const SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Icon(Icons.send),
+                  onPressed: _isSending ? null : _sendMessage,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 8),
         ],
       ),
     );
   }
 
+  Future<void> _sendMessage() async {
+    String msg = _controller.text.trim();
+    if (msg.isEmpty) return;
+
+    setState(() {
+      _messages.add(ChatMessage(text: msg, isUser: true));
+      _controller.clear();
+      _isSending = true;
+    });
+    _scrollToEnd();
+
+    String reply = await _chatService.sendMessage("u1", msg);
+
+    setState(() {
+      _messages.add(ChatMessage(text: reply, isUser: false));
+      _isSending = false;
+    });
+    _scrollToEnd();
+  }
+
   void _scrollToEnd() {
-    // Scroll to the bottom when new messages are added
-    scrollController.animateTo(
-      0,
-      duration: const Duration(milliseconds: 1000),
-      curve: Curves.easeIn,
-    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
   }
 }
